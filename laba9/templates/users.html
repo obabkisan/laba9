@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{myapp}} - Пользователи</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #F8E8E8 0%, #F0A8A9 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-family: "Times New Roman", Times, serif;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(240, 168, 169, 0.3);
+        }
+        h1 {
+            color: #d81b60;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 10px;
+        }
+        .menu {
+            margin: 20px 0;
+        }
+        .menu a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: #f8bbd0;
+            color: #880e4f;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #f48fb1;
+        }
+        .menu a:hover {
+            background: #f48fb1;
+        }
+        .card {
+            background: #fce4ec;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: #f8bbd0;
+            color: #880e4f;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #f48fb1;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #f8bbd0;
+        }
+        .btn-small {
+            padding: 4px 10px;
+            font-size: 14px;
+            background: #f8bcd0;
+            color: #880e4f;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        .btn-small:hover {
+            background: #f48fb1;
+        }
+        .currency-item {
+            margin: 5px 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{myapp}}</h1>
+        <p><strong>Автор проекта:</strong> {{author_name}}</p>
+        <p><strong>Группа:</strong> {{group}}</p>
+
+        <div class="menu">
+            <a href="/">Главная</a>
+            <a href="/author">Автор</a>
+            <a href="/users">Пользователи</a>
+            <a href="/currencies">Валюты</a>
+        </div>
+
+        {% if current_user %}
+        <div class="card">
+            <h3 style="color: #d81b60; margin-top: 0;">Пользователь: {{current_user.name}}</h3>
+            <p><strong>ID:</strong> {{current_user.id}}</p>
+
+            {% if user_currencies %}
+            <p><strong>Подписки на валюты:</strong></p>
+            <div style="background: white; padding: 10px; border-radius: 5px;">
+                {% for currency in user_currencies %}
+                <div class="currency-item">
+                    {{currency.char_code}} ({{currency.name}}): {{currency.value}} руб.
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p><strong>Нет подписок на валюты</strong></p>
+            {% endif %}
+
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <h3 style="color: #d81b60; margin-top: 0;">Все пользователи</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Действия</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>
+                        <a href="/user?id={{user.id}}" class="btn-small">
+                            Подробнее
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

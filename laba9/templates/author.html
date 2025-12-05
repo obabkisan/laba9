@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{myapp}} - Автор</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #F8E8E8 0%, #F0A8A9 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-family: "Times New Roman", Times, serif;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(240, 168, 169, 0.3);
+        }
+        h1 {
+            color: #d81b60;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 10px;
+        }
+        .menu {
+            margin: 20px 0;
+        }
+        .menu a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: #f8bbd0;
+            color: #880e4f;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #f48fb1;
+        }
+        .menu a:hover {
+            background: #f48fb1;
+        }
+        .card {
+            background: #fce4ec;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{myapp}}</h1>
+        <p><strong>Автор проекта:</strong> {{author_name}}</p>
+        <p><strong>Группа:</strong> {{group}}</p>
+
+        <div class="menu">
+            <a href="/">Главная</a>
+            <a href="/author">Автор</a>
+            <a href="/users">Пользователи</a>
+            <a href="/currencies">Валюты</a>
+        </div>
+
+        <div class="card">
+            <h3 style="color: #d81b60; margin-top: 0;">Информация об авторе</h3>
+            <p><strong>Имя:</strong> {{author_name}}</p>
+            <p><strong>Группа:</strong> {{group}}</p>
+            <p><strong>Проект:</strong> Приложение для отслеживания курсов валют</p>
+        </div>
+    </div>
+</body>
+</html>
